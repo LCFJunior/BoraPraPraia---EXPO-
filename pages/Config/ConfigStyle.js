@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
       fontSize: 19,
       fontWeight: '600',
       color: "#FFA825",
-      right: 110
+      right: 110,
     },
     content: {
       paddingHorizontal: 16,
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
       fontWeight: '500',
       color: '#a69f9f',
       textTransform: 'uppercase',
-      marginTop: 12
+      marginTop: 30
     },
     sectionBody: {
       borderRadius: 12,

@@ -18,6 +18,7 @@ import { useNavigation } from '@react-navigation/native';
 import styles from './EditStyle';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as ImagePicker from 'react-native-image-picker';
+import { launchImageLibrary } from 'react-native-image-picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default function EditProfile() {
@@ -114,7 +115,7 @@ export default function EditProfile() {
 
   return (
     <LinearGradient
-      colors={['#ffd39e', '#e6d6be']}
+      colors={['#ffd39e','#ffdeb7', '#fffefc']}
       style={styles.container}
     >
       <KeyboardAvoidingView

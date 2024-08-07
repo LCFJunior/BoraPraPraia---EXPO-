@@ -7,6 +7,7 @@ import ForgotPassword from './pages/ForgotPassword/ForgotPassword';
 import Home from './pages/Home/Home';
 import Config from './pages/Config/Config';
 import EditProfile from './pages/EditProfile/Edit';
+import Favorites from './pages/Favorites/Favorites';
 import { StatusBar, View } from 'react-native';
 
 
@@ -25,6 +26,7 @@ export default function App() {
         <Stack.Screen name="Home" component={Home} options={{ headerShown: false }}/>
         <Stack.Screen name="Config" component={Config} options={{ headerShown: false }}/>
         <Stack.Screen name="EditProfile" component={EditProfile} options={{ headerShown: false }}/>
+        <Stack.Screen name="Favorites" component={Favorites} options={{ headerShown: false }}/>
       </Stack.Navigator>
     </NavigationContainer>
 )}

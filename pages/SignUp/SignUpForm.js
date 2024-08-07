@@ -127,7 +127,7 @@ export default function SignUpForm() {
 
   return (
     <LinearGradient
-      colors={['#ffd39e', '#e6d6be']}
+      colors={['#ffd39e','#ffdeb7', '#fffefc']}
       style={styles.container}
     >
       <KeyboardAvoidingView
@@ -198,7 +198,7 @@ export default function SignUpForm() {
                   autoCapitalize='none'
                 />
                 <TouchableOpacity onPress={togglePasswordVisibility} style={styles.iconContainer}>
-                  <Icon name={isPasswordVisible ? 'eye-slash' : 'eye'} size={20} paddingRight/>
+                  <Icon name={isPasswordVisible ? 'eye-slash' : 'eye'} size={20} color="#FFA825" paddingRight/>
                 </TouchableOpacity>
               </View>
               <Text style={styles.inputLabel}>Confirmar Senha</Text>
@@ -216,7 +216,7 @@ export default function SignUpForm() {
                   autoCapitalize='none'
                 />
                 <TouchableOpacity onPress={toggleConfirmPasswordVisibility} style={styles.iconContainer}>
-                  <Icon name={isConfirmPasswordVisible ? 'eye-slash' : 'eye'} size={20} />
+                  <Icon name={isConfirmPasswordVisible ? 'eye-slash' : 'eye'} size={20} color="#FFA825" />
                 </TouchableOpacity>
               </View>
             </View>

@@ -24,7 +24,7 @@ export default function ForgotPassword() {
     
     return (
     <LinearGradient
-    colors={['#ffd39e', '#e6d6be']}
+    colors={['#ffd39e','#ffdeb7', '#fffefc']}
     style={styles.gradient}
     >
     <SafeAreaView style={styles.container}>

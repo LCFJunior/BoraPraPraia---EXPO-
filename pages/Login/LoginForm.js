@@ -99,7 +99,7 @@ export default function LoginForm() {
 
   return (
     <LinearGradient
-    colors={['#ffd39e', '#e6d6be']}
+    colors={['#ffd39e','#ffdeb7', '#fffefc']}
     style={styles.gradient}
     >
     <SafeAreaView style={styles.container}>
@@ -127,7 +127,7 @@ export default function LoginForm() {
                     onPress={togglePasswordVisibility}
                     style={styles.iconContainer}
                 >
-                <Icon name={isPasswordVisible ? 'eye-slash' : 'eye'} size={20} />
+                <Icon name={isPasswordVisible ? 'eye-slash' : 'eye'} size={20} color="#FFA825" />
                 </TouchableOpacity>
             )}
           />
@@ -137,6 +137,8 @@ export default function LoginForm() {
           <Switch
           value={rememberMe}
           onValueChange={handleRememberMeToggle}
+          thumbColor={handleRememberMeToggle ? '#FFA825' : '#dcdcdc'}
+          trackColor={{ false: '#dcdcdc', true: '#FFA825' }}
           style={{ transform: [{ scaleX: 0.95 }, { scaleY: 0.95 }] }}/>
           <Text style={styles.rememberText}>Lembrar de Mim</Text>
         </View>

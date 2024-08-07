@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     },
     forgetText : {
       fontSize : 11,
-      color : "blue",
+      color : "#FFA825",
       marginTop: 10
     },
     button : {
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
       marginTop: -10
     },
     signup : {
-      color : "blue",
+      color : "#FFA825",
       fontSize : 13
     },
     passwordContainer: {
