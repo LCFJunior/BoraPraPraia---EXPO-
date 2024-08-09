@@ -4,7 +4,7 @@
 
 ## Descrição
 
-Este é um aplicativo desenvolvido com o intuito de -> ***Uma informatização aos usuários sobre lotação, estabelecimentos e balneabilidade de praias de Florinópolis com mapa.***
+Este é um aplicativo desenvolvido com o intuito de -> ***Informar aos usuários sobre lotação, estabelecimentos e balneabilidade de praias de Florinópolis com mapa.***
 
 ## Funcionalidades
 
