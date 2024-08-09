@@ -161,10 +161,28 @@ const styles = StyleSheet.create({
     height : 45,
     width : 45,
   },
+  infoButton : {
+    position: 'absolute',
+    justifyContent: 'center',
+    top: 47,
+    zIndex: 1,
+    height : 45,
+    width : 45,
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 22,
+  },
   modalView: {
+    width: '83%',
+    height: '45%',
     margin: 20,
-    backgroundColor: 'white',
-    borderRadius: 20,
+    backgroundColor: '#fff0d9',
+    borderRadius: 40,
+    borderColor: 'white',
+    borderWidth: 3,
     padding: 35,
     alignItems: 'center',
     shadowColor: '#000',
@@ -172,31 +190,39 @@ const styles = StyleSheet.create({
       width: 0,
       height: 2,
     },
-    shadowOpacity: 0.25,
+    shadowOpacity: 1,
     shadowRadius: 4,
-    elevation: 5,
+    elevation: 40,
   },
-  button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-    top: 35
+  buttonCloseModal: {
+    backgroundColor: "#FFA825",
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 140,
+    height: 50,
+    borderRadius: 50,
+    top: '87%',
+    
   },
-  buttonOpen: {
-    backgroundColor: '#F194FF',
+  buttonText : {
+    color : "white"  ,
+    fontSize: 18,
+    fontWeight : "bold",
+  }, 
+  iconPeople: {
+    top: '-10%',
+    justifyContent: 'center'
   },
-  buttonClose: {
-    backgroundColor: '#2196F3',
+  textModal: {
+    justifyContent: 'center',
+    fontSize: 18,
+    fontWeight : "bold",
+    textAlign: 'center'
   },
-  textStyle: {
-    color: 'white',
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: 'center',
-  },
+  iconLoop: {
+    top: '-170%',
+    paddingLeft: 295
+  }
 });
 
 export default styles;

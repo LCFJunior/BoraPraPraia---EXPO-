@@ -142,6 +142,8 @@ export default function Config() {
                       onValueChange={emailNotifications =>
                         setForm({ ...form, emailNotifications })
                       }
+                      thumbColor={form.emailNotifications ? '#FFA825' : '#dcdcdc'}
+                      trackColor={{ false: '#dcdcdc', true: '#FFA825' }}
                       style={{ transform: [{ scaleX: 0.95 }, { scaleY: 0.95 }] }}
                       value={form.emailNotifications}
                     />
@@ -155,6 +157,8 @@ export default function Config() {
                       onValueChange={pushNotifications =>
                         setForm({ ...form, pushNotifications })
                       }
+                      thumbColor={form.pushNotifications ? '#FFA825' : '#dcdcdc'}
+                      trackColor={{ false: '#dcdcdc', true: '#FFA825' }}
                       style={{ transform: [{ scaleX: 0.95 }, { scaleY: 0.95 }] }}
                       value={form.pushNotifications}
                     />

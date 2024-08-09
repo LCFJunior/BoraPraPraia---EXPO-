@@ -7,7 +7,9 @@ import ForgotPassword from './pages/ForgotPassword/ForgotPassword';
 import Home from './pages/Home/Home';
 import Config from './pages/Config/Config';
 import EditProfile from './pages/EditProfile/Edit';
-import Favorites from './pages/Favorites/Favorites';
+import Favorites from './pages/Favorites/Favorites'
+import Restaurant from './pages/Establishments/Restaurants/Restaurant';
+import Parking from './pages/Establishments/Parking/Parking';
 import { StatusBar, View } from 'react-native';
 
 
@@ -27,6 +29,8 @@ export default function App() {
         <Stack.Screen name="Config" component={Config} options={{ headerShown: false }}/>
         <Stack.Screen name="EditProfile" component={EditProfile} options={{ headerShown: false }}/>
         <Stack.Screen name="Favorites" component={Favorites} options={{ headerShown: false }}/>
+        <Stack.Screen name="Restaurant" component={Restaurant} options={{ headerShown: false }}/>
+        <Stack.Screen name="Parking" component={Parking} options={{ headerShown: false }}/>
       </Stack.Navigator>
     </NavigationContainer>
 )}

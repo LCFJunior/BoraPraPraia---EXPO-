@@ -12,13 +12,19 @@ import {
   Pressable,
   TouchableOpacity,
   Alert,
-  Modal
+  Modal,
+  Button,
+  Info,
 } from 'react-native';
 import MapView, { PROVIDER_GOOGLE, Marker, Polygon } from 'react-native-maps';
 import { useNavigation } from '@react-navigation/native';
 import * as Location from 'expo-location';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon2 from 'react-native-vector-icons/FontAwesome5'
 import IconMA from 'react-native-vector-icons/MaterialIcons';
+import IconOC from 'react-native-vector-icons/Octicons';
+import IconIO from 'react-native-vector-icons/Ionicons'
+import IconFO from 'react-native-vector-icons/Foundation'
 import mapStyle from '../../MapStyle.json';
 import styles from "./HomeStyle";
 
@@ -278,12 +284,37 @@ export default function Home() {
   const [isFavorite, setIsFavorite] = useState(false);
   const [restaurantMarkerVisible, setRestaurantMarkerVisible] = useState(null);
   const [parkingMarkerVisible, setParkingMarkerVisible] = useState(null);
+  const [Info, setInfo] = useState(null);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [people ,setPeople] = useState(true);
+  const [contentIndex, setContentIndex] = useState(0);
+  const fadeAnim = useRef(new Animated.Value(0)).current;
   const handlePress = () => {
     setIsFavorite(!isFavorite);
   };
   const mapRef = useRef(null);
   const navigation = useNavigation();
 
+  const handleToggleInfo = () => {
+    setInfo((prevInfo) => (prevInfo === 'initial' ? 'updated' : 'initial'));
+  };
+
+  const handleLoopPress = () => {
+    Animated.timing(fadeAnim, {
+      toValue: 0,
+      duration: 300,
+      useNativeDriver: true,
+    }).start(() => {
+      setContentIndex((prevIndex) => (prevIndex === 0 ? 1 : 0));
+      Animated.timing(fadeAnim, {
+        toValue: 1,
+        duration: 300,
+        useNativeDriver: true,
+      }).start();
+    });
+  };
+
+  
   useEffect(() => {
     getMyLocation();
   }, []);
@@ -361,12 +392,24 @@ export default function Home() {
     navigation.navigate('Favorites');
   }
 
+  function navigateToRestaurant() {
+    navigation.navigate('Restaurant');
+  }
+
+  function navigateToParking() {
+    navigation.navigate('Parking');
+  }
+
   function handleMarkerPress() {
     setHighlighted(!highlighted);
     setMarkerVisible(false);
     setRestaurantMarkerVisible(true);
     setParkingMarkerVisible(true);
   }  
+
+  function handleInfo() {
+    setModalVisible(true);
+  }
 
   const geoJsonCoordinates = GEOJSON_COORDINATES.map(({ longitude, latitude }) => ({ latitude, longitude }));
 
@@ -400,23 +443,27 @@ export default function Home() {
           <MarkerBL coordinate={MARKER_COORDINATES_barra} onPress={handleMarkerPress} />
         )}
         {restaurantMarkerVisible && (
-          <Marker coordinate={MARKER_COORDINATES_restaurant}>
-            <View style={markerRestaurant.marker}>
-              <Image
-                source={require('../../assets/marker-restaurant.png')}
-                style={markerRestaurant.markerImage}
-              />
-            </View>
+          <Marker
+          coordinate={MARKER_COORDINATES_restaurant} 
+          onPress={navigateToRestaurant}>
+              <View style={markerRestaurant.marker}>
+                <Image
+                  source={require('../../assets/marker-restaurant.png')}
+                  style={markerRestaurant.markerImage}
+                />
+              </View>
           </Marker>
         )}
         {parkingMarkerVisible && (
-          <Marker coordinate={MARKER_COORDINATES_parking}>
-            <View style={markerRestaurant.marker}>
-              <Image
-                source={require('../../assets/car-park.png')}
-                style={markerRestaurant.markerImage}
-              />
-            </View>
+          <Marker 
+          coordinate={MARKER_COORDINATES_parking}
+          onPress={navigateToParking}>
+              <View style={markerRestaurant.marker}>
+                <Image
+                  source={require('../../assets/car-park.png')}
+                  style={markerRestaurant.markerImage}
+                />
+              </View>
           </Marker>
         )}
         {highlighted && (
@@ -449,10 +496,59 @@ export default function Home() {
           <IconMA name={isFavorite ? 'favorite' : 'favorite-outline'} size={35} color="#FFA825"/>
         </TouchableOpacity>
       )}
+      {highlighted && (
+        <TouchableOpacity style={styles.infoButton} onPress={() => {
+          handleInfo();
+        }}>
+          <IconOC name={Info ? 'info' : 'info'} size={35} color="#FFA825"/>
+        </TouchableOpacity>
+      )}
       <FabButton
         navigateToConfig={navigateToConfig}
         navigateToFavorites={navigateToFavorites}
       />
-    </View>
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <TouchableOpacity
+              onPress={() => setModalVisible(!modalVisible)}
+              style={styles.buttonCloseModal}
+            >
+              <Text style={styles.buttonText}>FECHAR</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              onPress={handleToggleInfo}
+              style={styles.buttonLoop}
+            >
+              <IconFO name='loop' size={30} color="#FFA825" style={styles.iconLoop} />
+            </TouchableOpacity>
+
+            {Info === 'initial' ? (
+              <>
+                <Icon2 name='umbrella-beach' size={150} color='green' style={styles.iconPeople} />
+                <Text style={styles.textModal}>
+                  Que sorte! A praia hoje está com um baixo indicie de lotação e está boa para vir passar o dia com a família! 🏖️
+                </Text>
+              </>
+            ) : (
+              <>
+                <IconIO name='water' size={150} color='green' style={styles.iconPeople} />
+                <Text style={styles.textModal}>
+                  Com a água limpa e perfeita para banho, hoje é o dia ideal para reunir a família e curtir um dia incrível na praia. Venha aproveitar! 🌊
+                </Text>
+              </>
+            )}
+          </View>
+        </View>
+      </Modal>
+  </View>
   );
 }

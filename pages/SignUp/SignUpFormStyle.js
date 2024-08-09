@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
       marginBottom: 100,
       marginTop : 100,
       borderColor : "#FFA825",
-      borderWidth : 3,
+      borderWidth : 6,
     },
     profilePlaceholder: {
       width: 280,
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
       marginBottom: 100,
       marginTop : 100,
       borderColor : "#FFA825",
-      borderWidth : 3,
+      borderWidth : 6,
     },
     title : {
       fontSize : 30,
@@ -76,6 +76,7 @@ const styles = StyleSheet.create({
       marginTop: 15
     },
     backButton : {
+      position: 'absolute',
       top: 47,
       left: 15,
       zIndex: 1,
