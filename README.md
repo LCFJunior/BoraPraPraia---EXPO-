@@ -55,3 +55,5 @@ Para rodar este projeto localmente, siga os passos abaixo:
   ```
    
 ***Caso queira rodar o backend para usufruir de tudo que o app tem para proporcionar, siga para o outro repositório ---> [BACKEND](https://github.com/llucaasbarros/boraprapraia/tree/AppBACKEND)***
+
+***versão nativa (ainda não atualizada) ---> [App Nativo](https://github.com/llucaasbarros/boraprapraia/tree/App)***
