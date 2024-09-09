@@ -1,6 +1,6 @@
-# BoraPraPraia
+# BoraPraPraia - (EXPO version)
 
-<img src="/assets/logo.png" alt="Logo do Aplicativo" class="logo" width="200">
+<img src="/assets/logo.png" alt="Logo do Aplicativo" class="logo" width="200"> <img src="https://github.com/user-attachments/assets/087ddb85-d243-4aae-ba74-ccc51eb4b447" alt="image" width="250" height="250">
 
 ## Descrição
 
