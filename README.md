@@ -42,6 +42,13 @@ Para rodar este projeto localmente, siga os passos abaixo:
    ```bash
    git clone https://github.com/LCFJunior/BoraPraPraia---EXPO-.git
    ```
+   
+- **Instale as dependências:**
+   
+  ```bash
+  npm install
+  ```
+  
 - **Instale o ExpoCLI:**
    
   ```bash
