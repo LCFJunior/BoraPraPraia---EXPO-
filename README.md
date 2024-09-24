@@ -61,9 +61,9 @@ Para rodar este projeto localmente, siga os passos abaixo:
   npx expo start
   ```
    
-***Caso queira rodar o backend para usufruir de tudo que o app tem para proporcionar, siga para o outro repositório ---> [BACKEND](https://github.com/llucaasbarros/boraprapraia/tree/AppBACKEND)***
+***Caso queira rodar o backend para usufruir de tudo que o app tem para proporcionar, siga para o outro repositório ➡️ [BACKEND](https://github.com/llucaasbarros/boraprapraia/tree/AppBACKEND)***
 
-***versão nativa (ainda não atualizada) ---> [App Nativo](https://github.com/llucaasbarros/boraprapraia/tree/App)***
+***versão nativa (ainda não atualizada) ➡️ [App Nativo](https://github.com/llucaasbarros/boraprapraia/tree/App)***
 
 #
 <img src="https://github.com/user-attachments/assets/087ddb85-d243-4aae-ba74-ccc51eb4b447" alt="image" width="250" height="250">
