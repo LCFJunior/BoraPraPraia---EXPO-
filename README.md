@@ -40,7 +40,7 @@ Para rodar este projeto localmente, siga os passos abaixo:
 - **Clone o repositório:**
    
    ```bash
-   git clone https://github.com/usuario/nome-do-repositorio.git
+   git clone https://github.com/LCFJunior/BoraPraPraia---EXPO-.git
    ```
 - **Instale o ExpoCLI:**
    
