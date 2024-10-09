@@ -28,10 +28,11 @@ export default function LoginForm() {
   const [rememberMe, setRememberMe] = useState(false);
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false); // Estado para indicar o carregamento
   const [isPasswordVisible, setIsPasswordVisible] = useState(true);
   const [loginError, setLoginError] = useState(false);
-  const [buttonText, setButtonText] = useState("LOGIN");
+  const [buttonText, setButtonText] = useState("LOGIN"); // Estado para o texto do botão
+  const [loadingText, setLoadingText] = useState('Carregando'); // Estado para o texto de carregamento
 
   const togglePasswordVisibility = () => {
     setIsPasswordVisible(!isPasswordVisible);
@@ -44,15 +45,18 @@ export default function LoginForm() {
     }
   
     setLoading(true);
-    console.log(email, password);
     const userData = {
       email: email,
       password: password,
     };
+
+    const minimumLoadingTime = new Promise(resolve => setTimeout(resolve, 2000));
   
-    axios.post('http://192.168.15.11:5001/LoginForm', userData)
-      .then(res => {
-        console.log(res.data);
+    Promise.all([
+      axios.post('http://192.168.15.11:5001/LoginForm', userData),
+      minimumLoadingTime
+    ])
+      .then(([res]) => {
         if (res.data.status === 'ok') {
           AsyncStorage.setItem('token', res.data.data);
           AsyncStorage.setItem('isLoggedIn', JSON.stringify(true));
@@ -64,7 +68,9 @@ export default function LoginForm() {
           setTimeout(() => {
             navigation.navigate('Home');
           }, 1000);
-          setButtonText("LOGIN EFETUADO! 😀");
+          setTimeout(() => {
+            setButtonText("LOGIN EFETUADO! ✔️");
+          }, 0);
         } else {
           Alert.alert('Login Failed', 'Email ou senha inválidos!');
           setPassword('');
@@ -78,20 +84,30 @@ export default function LoginForm() {
       .finally(() => {
         setLoading(false);
       });
-  }
-
-  async function getData() {
-    const data = await AsyncStorage.getItem('isLoggedIn');
-    console.log(data, 'at app.jsx');
-  }
+  };
 
   useEffect(() => {
-    getData();
-    console.log("Hii");
-    setPassword('');
-    setEmail('');
-    setButtonText('LOGIN');
-  }, [isFocused]);
+    let interval;
+    if (isFocused && !loading) {
+      setButtonText('LOGIN');
+    }
+    if (loading) {
+      // Lógica da animação de pontinhos
+      interval = setInterval(() => {
+        setLoadingText((prev) => {
+          if (prev === 'Carregando...') {
+            return 'Carregando';
+          } else {
+            return prev + '.';
+          }
+        });
+      }, 500);
+    } else {
+      setLoadingText('Carregando');
+    }
+  
+    return () => clearInterval(interval);
+  }, [loading]);
 
   const handleRememberMeToggle = () => {
     setRememberMe(previousState => !previousState);
@@ -122,15 +138,10 @@ export default function LoginForm() {
             onChangeText={(text) => { setPassword(text); setLoginError(false); }}
             autoCorrect={false}
             autoCapitalize='none'
-            renderRightAccessory={() => (
-                <TouchableOpacity
-                    onPress={togglePasswordVisibility}
-                    style={styles.iconContainer}
-                >
-                <Icon name={isPasswordVisible ? 'eye-slash' : 'eye'} size={20} color="#FFA825" />
-                </TouchableOpacity>
-            )}
           />
+            <TouchableOpacity onPress={togglePasswordVisibility} style={styles.iconContainer}>
+                  <Icon name={isPasswordVisible ? 'eye-slash' : 'eye'} size={20} color="#FFA825" paddingRight/>
+            </TouchableOpacity>
       </View>
       <View style={styles.rememberView}>
         <View style={styles.switch}>
@@ -149,11 +160,13 @@ export default function LoginForm() {
         </View>
       </View>
       <View style={styles.buttonView}>
-        <Pressable style={styles.button} onPress={handleSubmit} disabled={loading}>
-          <Text style={styles.buttonText}>{buttonText}</Text>
-        </Pressable>
-        <Text style={styles.optionsText}>--------------------   OU   --------------------</Text>
-      </View>
+  <Pressable style={styles.button} onPress={handleSubmit} disabled={loading}>
+    <Text style={styles.buttonText}>
+      {loading ? loadingText : buttonText} {/* Certifique-se de que os textos estão dentro do componente <Text> */}
+    </Text>
+  </Pressable>
+  <Text style={styles.optionsText}>--------------------   OU   --------------------</Text>
+</View>
       <View style={styles.mediaIcons}>
         <Pressable onPress={() => Alert.alert("Login com Facebook")}>
           <Image source={facebook} style={styles.icons} />

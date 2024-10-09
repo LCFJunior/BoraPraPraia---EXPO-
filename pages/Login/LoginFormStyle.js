@@ -127,6 +127,11 @@ const styles = StyleSheet.create({
         width: '100%',
         position: 'relative',
       },
+      iconContainer: {
+        padding: 78,
+        position: 'absolute',
+        right: -10
+      },
   })
 
 export default styles;
