@@ -9,7 +9,7 @@
     "splash": {
       "image": "./assets/logo.png",
       "resizeMode": "contain",
-      "backgroundColor": "#FFA825"
+      "backgroundColor": "#FFF1E0"
     },
     "ios": {
       "supportsTablet": true
@@ -17,7 +17,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/logo.png",
-        "backgroundColor": "#FFA825"
+        "backgroundColor": "#FFF1E0"
       },
       "permissions": [
         "CAMERA_ROLL"
@@ -25,6 +25,17 @@
     },
     "web": {
       "favicon": "./assets/logo.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "f864d6ec-0a77-4ce4-b690-7a5ab2aaf924"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/f864d6ec-0a77-4ce4-b690-7a5ab2aaf924"
     }
   }
 }

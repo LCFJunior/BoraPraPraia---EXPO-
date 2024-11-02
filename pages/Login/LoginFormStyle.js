@@ -13,8 +13,8 @@ const styles = StyleSheet.create({
       paddingHorizontal: 25
     },
     image : {
-      height : 210,
-      width : 220,
+      height : '20%',
+      width : '60%',
       marginBottom : 50
     },
     title : {
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     },
     input : {
       height : 50,
-      width: 350,
+      width: '93%',
       paddingHorizontal : 20,
       borderColor : "#FFA825",
       borderWidth : 1,
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     button : {
       backgroundColor : "#FFA825",
       height : 45,
-      width : 350,
+      width : '97%',
       borderColor : "white",
       borderWidth  : 1,
       borderRadius : 5,
@@ -128,9 +128,26 @@ const styles = StyleSheet.create({
         position: 'relative',
       },
       iconContainer: {
-        padding: 78,
+        padding: '21%',
         position: 'absolute',
         right: -10
+      },
+      loadingContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#FFF1E0',
+      },
+      loadingImage: {
+        width: '80%',
+        height: '50%',
+      },
+      successText: {
+        fontSize: 18,
+        color: '#32CD32', // Verde para indicar sucesso
+        fontWeight: 'bold',
+        marginTop: 10,
+        textAlign: 'center',
       },
   })
 

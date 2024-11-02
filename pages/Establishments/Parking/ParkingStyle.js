@@ -7,9 +7,14 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     container: {
-        flex: 1,
-        justifyContent: 'flex-start',
-    },
+    flex: 1,
+    justifyContent: 'flex-start',
+    
+  },
+  scrollContainer: {
+    alignItems: 'center',
+
+  },
     headerContainer: {
         width: '100%',
         height: HEADER_HEIGHT,
@@ -100,7 +105,88 @@ const styles = StyleSheet.create({
         marginTop: 150,
         fontSize: 35,
         color: 'blue',
-    }
+    },
+    commentBox: {
+        backgroundColor: '#FFF',
+        borderRadius: 10,
+        padding: 15,
+        marginTop: 30,
+        alignItems: 'center',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 5,
+        height: '10%',
+        width: '90%'
+    },
+    commentText: {
+        fontSize: 16,
+        fontStyle: 'italic',
+        color: '#333',
+        marginVertical: 10,
+        textAlign: 'center',
+    },
+    userName: {
+        fontSize: 14,
+        fontWeight: 'bold',
+        color: '#555',
+    },
+    commentTime: {
+        fontSize: 12,
+        color: '#888',
+        marginTop: 5,
+    },
+    textComments: {
+        fontSize: 35,
+        color: 'black',
+        fontWeight: 'bold',
+        alignSelf: 'flex-start',
+        paddingLeft: '5%',
+        marginTop: 30
+    },
+    starsContainerComments: {
+        flexDirection: 'row',
+        alignSelf: 'flex-start',
+        paddingLeft: '5%',
+        marginTop: 20
+    },
+    textStar: {
+        alignSelf: 'flex-start',
+        paddingLeft: '5%',
+        marginTop: 10,
+        color: '#666666'
+    },
+    textStarExperience: {
+        alignSelf: 'flex-start',
+        paddingLeft: '10%',
+        fontSize: 20,
+        marginTop: 30,
+        color: '#666666'
+    },
+    submitReviewButton: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        alignSelf: 'flex-start',
+        backgroundColor: '#41A6B4',
+        padding: 10,
+        width: '40%',
+        height: '3.2%',
+        borderRadius: 5,
+        justifyContent: 'center',
+        marginTop: 30,
+        marginBottom: 20,
+        marginLeft: '5%'
+    },
+    submitReviewText: {
+        color: 'white',
+        fontSize: 16,
+        fontWeight: 'bold',
+        marginRight: 10,
+    },
+    submitReviewIcon: {
+        marginLeft: 5,
+    },
 });
 
 export default styles;

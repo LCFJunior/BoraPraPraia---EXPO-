@@ -34,7 +34,7 @@ export default function Config() {
       const token = await AsyncStorage.getItem('token');
       console.log(token);
       axios
-        .post('http://192.168.15.11:5001/userdata', { token: token })
+        .post('https://bppbackend.onrender.com/userdata', { token: token })
         .then(res => {
           console.log(res.data);
           setUserData(res.data.data);

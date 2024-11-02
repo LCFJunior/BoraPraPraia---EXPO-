@@ -483,6 +483,15 @@ export default function Home() {
             setMarkerVisible(true);
             setRestaurantMarkerVisible(false);
             setParkingMarkerVisible(false);
+            mapRef.current.animateToRegion(
+              {
+                latitude: region.latitude,
+                longitude: region.longitude,
+                latitudeDelta: 0.5,
+                longitudeDelta: 0.5,
+              },
+              500
+            );
           }}
         >
           <Image source={backButton} style={styles.backButtonImage} />

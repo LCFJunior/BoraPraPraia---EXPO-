@@ -39,14 +39,14 @@ export default function EditProfile() {
     const getUserData = async () => {
       const token = await AsyncStorage.getItem('token');
       axios
-        .post('http://192.168.15.11:5001/userdata', { token: token })
+        .post('https://bppbackend.onrender.com/userdata', { token: token })
         .then(res => {
           setUsername(res.data.data.username);
           setEmail(res.data.data.email);
           setTelephone(res.data.data.telephone);
           setPassword(res.data.data.password);
           if (res.data.data.profileImage) {
-            setProfileImage({ uri: `http://192.168.15.11:5001/${res.data.data.profileImage.replace(/\\/g, '/')}` });
+            setProfileImage({ uri: `https://bppbackend.onrender.com/${res.data.data.profileImage.replace(/\\/g, '/')}` });
           }
         })
         .catch(error => {
@@ -80,7 +80,7 @@ export default function EditProfile() {
       });
     }
 
-    axios.put('http://192.168.15.11:5001/Alterar', formData, {
+    axios.put('https://bppbackend.onrender.com/Alterar', formData, {
       headers: {
           'Content-Type': 'multipart/form-data',
           'Authorization': `Bearer ${token}`

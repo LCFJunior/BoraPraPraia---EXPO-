@@ -12,15 +12,16 @@ import {
 } from 'react-native';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { LinearGradient} from 'expo-linear-gradient';
+import { LinearGradient } from 'expo-linear-gradient';
 import axios from 'axios';
 import styles from './LoginFormStyle';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const logo = require("../../assets/logo.png");
+const logo = require("../../assets/NewLogo.gif");
 const facebook = require("../../assets/facebook.png");
 const google = require("../../assets/google.png");
 const x = require("../../assets/x.png");
+const loadingGif = require("../../assets/Loading.gif");
 
 export default function LoginForm() {
   const navigation = useNavigation();
@@ -28,11 +29,12 @@ export default function LoginForm() {
   const [rememberMe, setRememberMe] = useState(false);
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const [loading, setLoading] = useState(false); // Estado para indicar o carregamento
+  const [loading, setLoading] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(true);
   const [loginError, setLoginError] = useState(false);
-  const [buttonText, setButtonText] = useState("LOGIN"); // Estado para o texto do botão
-  const [loadingText, setLoadingText] = useState('Carregando'); // Estado para o texto de carregamento
+  const [buttonText, setButtonText] = useState("LOGIN");
+  const [loadingText, setLoadingText] = useState('Carregando');
+  const [loginSuccess, setLoginSuccess] = useState(false); // Novo estado para sucesso no login
 
   const togglePasswordVisibility = () => {
     setIsPasswordVisible(!isPasswordVisible);
@@ -43,7 +45,7 @@ export default function LoginForm() {
       Alert.alert('Error', 'Por favor, preencha todos os campos!');
       return;
     }
-  
+
     setLoading(true);
     const userData = {
       email: email,
@@ -51,9 +53,9 @@ export default function LoginForm() {
     };
 
     const minimumLoadingTime = new Promise(resolve => setTimeout(resolve, 2000));
-  
+
     Promise.all([
-      axios.post('http://192.168.15.11:5001/LoginForm', userData),
+      axios.post('https://bppbackend.onrender.com/LoginForm', userData),
       minimumLoadingTime
     ])
       .then(([res]) => {
@@ -65,12 +67,7 @@ export default function LoginForm() {
           } else {
             AsyncStorage.removeItem('userType');
           }
-          setTimeout(() => {
-            navigation.navigate('Home');
-          }, 1000);
-          setTimeout(() => {
-            setButtonText("LOGIN EFETUADO! ✔️");
-          }, 0);
+          setLoginSuccess(true); // Define que o login foi bem-sucedido
         } else {
           Alert.alert('Login Failed', 'Email ou senha inválidos!');
           setPassword('');
@@ -92,7 +89,6 @@ export default function LoginForm() {
       setButtonText('LOGIN');
     }
     if (loading) {
-      // Lógica da animação de pontinhos
       interval = setInterval(() => {
         setLoadingText((prev) => {
           if (prev === 'Carregando...') {
@@ -105,13 +101,31 @@ export default function LoginForm() {
     } else {
       setLoadingText('Carregando');
     }
-  
+
+    // Timer para redirecionar após login bem-sucedido
+    if (loginSuccess) {
+      setTimeout(() => {
+        navigation.navigate('Home');
+      }, 1000);
+    }
+
     return () => clearInterval(interval);
-  }, [loading]);
+  }, [loading, loginSuccess, isFocused]);
 
   const handleRememberMeToggle = () => {
     setRememberMe(previousState => !previousState);
   };
+
+  // Retorno condicional para a tela de loading
+  if (loading || loginSuccess) {
+    return (
+      <View style={styles.loadingContainer}>
+        <Image source={loadingGif} style={styles.loadingImage} />
+        {loginSuccess && <Text style={styles.successText}>Login efetuado!</Text>}
+      </View>
+    );
+  }
+
 
   return (
     <LinearGradient
@@ -162,7 +176,7 @@ export default function LoginForm() {
       <View style={styles.buttonView}>
   <Pressable style={styles.button} onPress={handleSubmit} disabled={loading}>
     <Text style={styles.buttonText}>
-      {loading ? loadingText : buttonText} {/* Certifique-se de que os textos estão dentro do componente <Text> */}
+      {loading ? loadingText : buttonText} 
     </Text>
   </Pressable>
   <Text style={styles.optionsText}>--------------------   OU   --------------------</Text>

@@ -68,7 +68,7 @@ export default function SignUpForm() {
     }
 
     axios
-      .post('http://192.168.15.11:5001/SignUpForm', formData, {
+      .post('https://bppbackend.onrender.com/SignUpForm', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
